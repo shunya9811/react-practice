@@ -2,21 +2,31 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [name, setName] = useState({
+    firstName: '',
+    lastName: '',
+  });
 
-  const [count, setCount] = useState(0)
-  const [count2, setCount2] = useState(0)
+  const handleFirstName = (firstName) => {
+    setName((prev) => ({ ...prev, firstName }));
+  };
+
+  const handleLastName = (lastName) => {
+    setName((prev) => ({ ...prev, lastName }));
+  };
 
   useEffect(() => {
-    console.log('useEffectが実行されました。')
-    
-  }, [count])
+    console.log('useEffectが実行されました');
+  }, [name]);
 
   return (
     <div className="App">
       <h1>Learn useEffect</h1>
-      <h2>Count: { count } / Count2: { count2 }</h2>
-      <button onClick={() => setCount(count+1)}>Count+</button><br/>
-      <button onClick={() => setCount2(count2+1)}>Count2+</button><br/>
+      <h2>Name:{`${name.firstName} ${name.lastName}`}</h2>
+      <div>
+        <button onClick={() => handleFirstName('John')}>John</button>
+        <button onClick={() => handleLastName('Joe')}>Doe</button>
+      </div>
     </div>
   );
 }
