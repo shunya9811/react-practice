@@ -1,32 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
+import Count from './components/count.js'
 
 function App() {
-  const [name, setName] = useState({
-    firstName: '',
-    lastName: '',
-  });
 
-  const handleFirstName = (firstName) => {
-    setName((prev) => ({ ...prev, firstName }));
-  };
-
-  const handleLastName = (lastName) => {
-    setName((prev) => ({ ...prev, lastName }));
-  };
-
-  useEffect(() => {
-    console.log('useEffectが実行されました');
-  }, [name]);
+  const [display, setDisplay] = useState(true)
 
   return (
     <div className="App">
       <h1>Learn useEffect</h1>
-      <h2>Name:{`${name.firstName} ${name.lastName}`}</h2>
-      <div>
-        <button onClick={() => handleFirstName('John')}>John</button>
-        <button onClick={() => handleLastName('Joe')}>Doe</button>
-      </div>
+      <button onClick={()=>setDisplay(!display)}>Toggle</button>
+      {display && <Count/>}
     </div>
   );
 }
