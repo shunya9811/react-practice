@@ -1,16 +1,15 @@
-import { useState } from 'react';
-import './App.css';
-import Count from './components/count.js'
+import { createContext } from 'react';
+import ComponentA from './components/ComponentA'
+
+export const UserCount = createContext()
 
 function App() {
-
-  const [display, setDisplay] = useState(true)
-
   return (
-    <div className="App">
-      <h1>Learn useEffect</h1>
-      <button onClick={()=>setDisplay(!display)}>Toggle</button>
-      {display && <Count/>}
+    <div style={{ textAlign: 'center' }}>
+      <h1>Learn useContext</h1>
+      <UserCount.Provider value={100}>
+        <ComponentA/>
+      </UserCount.Provider>
     </div>
   );
 }
