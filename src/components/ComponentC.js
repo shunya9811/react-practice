@@ -1,20 +1,19 @@
-import　{useContext} from 'react'
-import { UserCount } from '../App'
+import { useAnotherCountContext } from '../context/AnotherCountContext';
+import { useCountContext } from '../context/CountContext';
 
 const ComponentC = () => {
-    const count = useContext(UserCount)
-    return (
-        <div>
-            <p>Componet C</p>
-            <p>{ count }</p>
+  const { count, setCount } = useCountContext();
+  const { anotherCount, setAnotherCount } = useAnotherCountContext();
 
-            <UserCount.Consumer>
-                {(count) => {
-                    return <p>{count}</p>;
-                }}
-            </UserCount.Consumer>
-        </div>
-    )
-}
+  return (
+    <div>
+      <p>Componet C</p>
+      <p>count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <p>another count: {anotherCount}</p>
+      <button onClick={() => setAnotherCount(anotherCount + 1)}>+</button>
+    </div>
+  );
+};
 
-export default ComponentC
+export default ComponentC;
